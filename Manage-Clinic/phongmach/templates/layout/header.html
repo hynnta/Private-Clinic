@@ -1,0 +1,37 @@
+<nav class="navbar navbar-expand-lg">
+    <div class="container">
+        <a href="/" class="nav-link text-uppercase font-weight-bold">
+            <img href="/" src="{{ url_for('static', filename='images/logo.png') }}" alt="logo" style="width:40px;">
+        </a>
+        <a href="/" class="navbar-brand text-uppercase font-weight-bold">Phòng Mạch HAT</a>
+        <div id="navbarSupportedContent" class="collapse navbar-collapse">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active"><a href="/lichkhambenh" class="nav-link text-uppercase font-weight-bold">Đăng ký lịch
+                    khám <span
+                            class="sr-only">(current)</span></a></li>
+                <li class="nav-item"><a href="/danhsachlichkham" class="nav-link text-uppercase font-weight-bold">Danh sách khám</a></li>
+                <li class="nav-item"><a href="/danhsachphieukham" class="nav-link text-uppercase font-weight-bold">phiếu khám</a></li>
+                <li class="nav-item"><a href="/admin" class="nav-link text-uppercase font-weight-bold">Quản trị</a></li>
+                {% if current_user.is_authenticated %}
+                <li class="nav-item"><a href="/" class="nav-link text-uppercase font-weight-bold">
+                    {% if current_user.avatar %}
+                    <img class="avatar" src="{{ current_user.avatar }}" width="30"; height="25" alt="{{ current_user.name }}"/>
+                    {% else %}
+                    <img class="avatar" src="{{ url_for('static', filename='images/avatar.jpg') }}" width="30"; height="25"
+                         alt="{{ current_user.name }}"/>
+                    {% endif %}
+                    {{ current_user.name }}
+                </a>
+                </li>
+                <li class="nav-item"><a href="/logout" class="nav-link text-danger font-weight-bold">ĐĂNG XUẤT</a>
+                </li>
+                {% else %}
+                <li class="nav-item"><a href="/login" class="nav-link text-uppercase font-weight-bold">Đăng Nhập</a>
+                </li>
+                <li class="nav-item"><a href="/register" class="nav-link text-uppercase font-weight-bold">Đăng Ký</a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>

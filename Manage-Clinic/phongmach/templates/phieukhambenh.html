@@ -1,0 +1,39 @@
+{% extends 'layout/base.html' %}
+{% block title %} Phiếu khám bệnh {% endblock %}
+
+{% block content %}
+<h1 class="text-center text-primary">Lập phiếu khám bệnh</h1>
+
+<div class="container">
+    <p class="text-info">Tên bệnh nhân: {{benhnhan.name}}</p>
+    <form action="{{ url_for('tao_phieukham') }}" method="post">
+        <input type="hidden" name="benhnhan" value="{{benhnhan.id}}">
+        <div class="form-floating mb-3 mt-3">
+            <input type="datetime-local" class="form-control" id="thoi_gian" placeholder="Thời gian khám"
+                   name="thoi_gian">
+            <label for="thoi_gian"></label>
+        </div>
+
+        <div class="form-floating mb-3 mt-3">
+            <input type="text" class="form-control" required id="trieu_chung" placeholder="Nhập triệu chứng"
+                   name="trieu_chung">
+            <label for="trieu_chung"></label>
+        </div>
+
+        <div class="form-floating mb-3 mt-3">
+            <input type="text" class="form-control" required id="chuan_doan" placeholder="Chuẩn đoán của bác sĩ"
+                   name="chuan_doan">
+            <label for="chuan_doan"></label>
+        </div>
+
+        <div class="form-floating mt-3 mb-3">
+            <input type="submit" class="btn btn-danger" value="Lập phiếu khám">
+        </div>
+
+        <a class="btn btn-primary" href="{{ url_for('thuoc_list', benhnhan = benhnhan.id) }}">
+            Kê toa thuốc
+        </a>
+    </form>
+    <br><br>
+</div>
+{% endblock %}

@@ -1,0 +1,20 @@
+* {
+    font-family: Tahoma;
+}
+
+h1.subject {
+    text-align: center;
+}
+
+body {
+
+    color: #0a4275;
+}
+
+img.avatar {
+  border-radius: 50%;
+}
+
+table.lichkham{
+    border-collapse: collapse;
+}

@@ -1,0 +1,38 @@
+{% extends 'layout/base.html' %}
+{% block title %} Danh sách lịch khám bệnh {% endblock %}
+
+{% block content %}
+<h1 class="text-center text-primary"> Danh sách lịch khám bệnh </h1>
+
+{% if current_user.is_authenticated and current_user.user_role==UserRole.BACSI %}
+<form class="form-inline; navbar navbar-expand-sm" >
+    <input name="keyword" class="form-control mr-sm-2" type="text" placeholder="Nhập từ khóa....">
+    <button class="btn btn-primary" type="submit"><i class="fas fa-search"></i></button>
+</form>
+
+<table class="table hover">
+    <tr class="text-center">
+        <th>Mã lịch khám</th>
+        <th>thời gian khám</th>
+        <th>Triệu chứng</th>
+        <th>Tên bệnh nhân</th>
+        <th>Xử lý</th>
+    </tr>
+    {% for l in lichkham %}
+    <tr class="text-center">
+        <td>{{ l.id }}</td>
+        <td>{{ l.thoi_gian }}</td>
+        <td>{{ l.trieu_chung }}</td>
+        <td>{{ l.user.name }}</td>
+        <td>
+            <a class="btn btn-primary" href="/phieukhambenh/{{l.user.id}}">Lập phiếu khám</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+{% else %}
+<h2 class="text-center text-danger"> Bạn không có quyền truy cập </h2>
+{% endif %}
+
+
+{% endblock %}

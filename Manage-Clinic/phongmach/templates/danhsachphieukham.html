@@ -1,0 +1,41 @@
+{% extends 'layout/base.html' %}
+{% block title %} Danh sách phiếu khám bệnh {% endblock %}
+
+{% block content %}
+<h1 class="text-center text-primary"> Danh sách phiếu khám bệnh </h1>
+
+{% if current_user.is_authenticated and current_user.user_role==UserRole.BACSI %}
+<form class="form-inline; navbar navbar-expand-sm" >
+    <input name="keyword" class="form-control mr-sm-2" type="text" placeholder="Nhập từ khóa....">
+    <button class="btn btn-primary" type="submit"><i class="fas fa-search"></i></button>
+</form>
+
+<table class="table hover">
+    <tr class="text-center">
+        <th>Mã phiếu khám</th>
+        <th>thời gian khám</th>
+        <th>Triệu chứng</th>
+        <th>Chuẩn đoán</th>
+        <th>Tên bác sĩ</th>
+        <th>Tên bệnh nhân</th>
+        <th>Xử lý</th>
+    </tr>
+    {% for p,b,bs in data %}
+    <tr class="text-center">
+        <td>{{ p.id }}</td>
+        <td>{{ p.thoi_gian }}</td>
+        <td>{{ p.trieu_chung }}</td>
+        <td>{{ p.chuan_doan }}</td>
+        <td>{{ bs.name }}</td>
+        <td>{{ b.name }}</td>
+        <td>
+
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+{% else %}
+<h2 class="text-center text-danger"> Bạn không có quyền truy cập </h2>
+{% endif %}
+
+{% endblock %}

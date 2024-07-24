@@ -1,0 +1,30 @@
+{% extends 'layout/base.html' %}
+{% block title %} Đăng ký lịch khám {% endblock %}
+
+{% block content %}
+<h1 class="text-center text-primary">Đăng ký lịch khám bệnh</h1>
+
+{% if current_user.is_authenticated %}
+<div class="container">
+    <form action="/lichkhambenh" method="post">
+        <div class="form-floating mb-3 mt-3">
+            <input type="datetime-local" class="form-control" required id="thoi_gian" placeholder="Thời gian khám"
+                   name="thoi_gian">
+            <label for="thoi_gian"></label>
+        </div>
+
+        <div class="form-floating mb-3 mt-3">
+            <input type="text" class="form-control" required id="trieu_chung" placeholder="Nhập triệu chứng"
+                   name="trieu_chung">
+            <label for="trieu_chung"></label>
+        </div>
+
+        <div class="form-floating mt-3 mb-3">
+            <input type="submit" class="btn btn-danger" value="Đăng ký lịch khám">
+        </div>
+    </form>
+</div>
+{% else %}
+<h2 class="text-center text-danger">Bạn phải đăng nhập để đăng ký lịch khám bệnh</h2>
+{% endif %}
+{% endblock %}

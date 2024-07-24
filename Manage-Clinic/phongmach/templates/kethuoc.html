@@ -1,0 +1,43 @@
+{% extends 'layout/base.html' %}
+{% block title %} Danh sách thuốc {% endblock %}
+
+{% block content %}
+<h1 class="text-center text-primary"> Toa thuốc đang kê </h1>
+
+{% if 'ketoa' in session and session['ketoa'] %}
+<table class="table">
+    <tr>
+        <th>Mã thuốc</th>
+        <th>Tên thuốc</th>
+        <th>Giá</th>
+        <th>Số lượng</th>
+        <th>Thay đổi số lượng</th>
+        <th></th>
+    </tr>
+    {% for k in session['ketoa'].values() %}
+    <tr>
+        <td>{{ k.id }}</td>
+        <td>{{ k.ten }}</td>
+        <td>{{ k.gia }}</td>
+        <td>{{ k.so_luong }}</td>
+        <td>
+            <input type="number" value="" class="form_control"/>
+        </td>
+        <td>
+            <input type="button" value="Xóa" class="btn btn-danger"/>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+<div class="alert alert-info">
+    <h5>Tổng số thuốc: {{ tienThuoc.tong_so_luong }}</h5>
+    <h5>Tổng tiền toa thuốc: {{ "{:,.1f}".format(tienThuoc.tong_tien) }} VNĐ</h5>
+</div>
+
+<input type="button" value="Thanh toán" class="btn btn-danger">
+<br><br>
+{% else %}
+<p><i>chưa thêm thuốc</i></p>
+{% endif %}
+{% endblock %}

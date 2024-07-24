@@ -1,0 +1,46 @@
+{% extends 'layout/base.html' %}
+{% block title %} Danh sách thuốc {% endblock %}
+
+{% block content %}
+<h1 class="text-center text-primary"> Danh sách thuốc </h1>
+
+
+<form class="form-inline; navbar navbar-expand-sm">
+    <input name="keyword" class="form-control mr-sm-2" type="text" placeholder="Nhập từ khóa....">
+    <button class="btn btn-primary" type="submit"><i class="fas fa-search"></i></button>
+</form>
+
+<table class="table hover">
+    <tr class="text-center">
+        <th>Mã thuốc</th>
+        <th>Tên thuốc</th>
+        <th>Số lượng</th>
+        <th>Giá</th>
+        <th>Ghi chú</th>
+        <th></th>
+    </tr>
+    {% for t in thuoc %}
+    <tr class="text-center">
+        <td>{{ t.id }}</td>
+        <td>{{ t.ten }}</td>
+        <td id="soluong{{t.id}}">{{ t.so_luong }}</td>
+        <td>{{ t.gia }}</td>
+        <td>{{ t.ghi_chu }}</td>
+        <td>
+            <a href="#" onclick="themThuoc({{ t.id }}, '{{ t.ten }}', {{ t.gia }}, '{{ t.ghi_chu }}')"
+               class="btn btn-primary">Thêm thuốc</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+<div class="" >
+    <input type="submit" class="btn btn-danger" value="Lập toa thuốc" onclick="themtoathuoc()">
+</div>
+<br>
+<a class="btn btn-primary" href="{{ url_for('ke_thuoc') }}">Số lượng thuốc đã thêm <span class="badge badge-danger" id="demThuoc">{{ tienToaThuoc.tong_so_luong }}</span></a>
+<br><br>
+
+
+
+{% endblock %}
